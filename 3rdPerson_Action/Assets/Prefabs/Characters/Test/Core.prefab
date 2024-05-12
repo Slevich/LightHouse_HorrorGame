@@ -120,6 +120,11 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: -2.9920673
       objectReference: {fileID: 0}
+    - target: {fileID: 6080776987310518866, guid: 1a816d9354158e0459ed82a664555f72,
+        type: 3}
+      propertyPath: readingMouseInputAxis
+      value: 
+      objectReference: {fileID: 6509490618285737754}
     - target: {fileID: 6787272691785697724, guid: 1a816d9354158e0459ed82a664555f72,
         type: 3}
       propertyPath: m_Name
@@ -197,13 +202,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8095399972840192023, guid: 1a816d9354158e0459ed82a664555f72,
         type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.9993395
+      objectReference: {fileID: 0}
+    - target: {fileID: 8095399972840192023, guid: 1a816d9354158e0459ed82a664555f72,
+        type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.03565947
+      value: -0.03563592
       objectReference: {fileID: 0}
     - target: {fileID: 8095399972840192023, guid: 1a816d9354158e0459ed82a664555f72,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.007112421
+      value: 0.0071077235
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

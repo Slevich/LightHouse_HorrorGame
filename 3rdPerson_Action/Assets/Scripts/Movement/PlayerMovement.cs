@@ -37,6 +37,8 @@ public class PlayerMovement : MovementBase
             if (TryGetComponent(out Transform thisTransform)) playerTransform = thisTransform;
             else Debug.LogError("Player transform reference not set to player movement component!"); ;
         }
+
+        
     }
 
     // Update is called once per frame
@@ -53,7 +55,7 @@ public class PlayerMovement : MovementBase
 
     protected override Vector3 CalculateMovementDirection()
     {
-        Vector2 directionAxes = inputHandler.InputDirectionsAxes;
+        Vector2 directionAxes = Vector2.zero /*inputHandler.InputDirectionsAxes*/;
         Vector3 directionPoint = new Vector3(cameraGlobalPosition.x + directionAxes.x, cameraGlobalPosition.y + directionAxes.y, cameraGlobalPosition.z);
         return directionPoint;
     }

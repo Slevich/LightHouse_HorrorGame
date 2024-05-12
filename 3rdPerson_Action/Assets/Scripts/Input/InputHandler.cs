@@ -1,13 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
+using UnityEngine.InputSystem;
 
 public class InputHandler : MonoBehaviour
 {
     #region Fields
     private PlayerInputAction inputAction;
 
-    public Vector2 InputDirectionsAxes => inputAction.Movement.InputDirections.ReadValue<Vector2>();
+    private Vector2 mousePosition = Vector2.zero;
+    private Vector2 baseMovementButtonsInputDirection = Vector2.zero;
+    public Vector2 mousePositionVector => mousePosition;
+    public Vector3 BaseMovementButtonsInputDirection => baseMovementButtonsInputDirection;
     #endregion
 
     #region Methods
@@ -24,18 +29,18 @@ public class InputHandler : MonoBehaviour
     private void Awake ()
     {
         inputAction = new PlayerInputAction();
-        AddListenersToInputActions();
+        Cursor.visible = false;
     }
 
     private void Update ()
     {
-        Vector2 inputDirection = inputAction.Movement.InputDirections.ReadValue<Vector2>();
-        Debug.Log($"Input 2D Vector: X: {inputDirection.x} Y: {inputDirection.y}");
+        MouseDetector.CalculateMouseValues(inputAction);
+        baseMovementButtonsInputDirection = KeyboardDetector.ReadWASDInputDirections(inputAction);
     }
 
-    public void AddListenersToInputActions()
+    public void AddListenersToMouseMovement(UnityAction action)
     {
-        
+        MouseDetector.OnMouseMovement += action;
     }
     #endregion
 }

@@ -210,6 +210,34 @@ public partial class @PlayerInputAction: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""Base"",
+            ""id"": ""233dcc89-d463-49e8-ae6a-6976c728e8a0"",
+            ""actions"": [
+                {
+                    ""name"": ""MousePosition"",
+                    ""type"": ""Value"",
+                    ""id"": ""e03f0c5a-3a50-471a-984a-65e108765917"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""893d494a-54ea-48be-acfe-3e8ef33897f9"",
+                    ""path"": ""<Mouse>/position"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""MouseAndKeyboard"",
+                    ""action"": ""MousePosition"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": [
@@ -237,6 +265,9 @@ public partial class @PlayerInputAction: IInputActionCollection2, IDisposable
         m_Fight = asset.FindActionMap("Fight", throwIfNotFound: true);
         m_Fight_LeftMouseButtonPressed = m_Fight.FindAction("LeftMouseButtonPressed", throwIfNotFound: true);
         m_Fight_RightMouseButtonPressed = m_Fight.FindAction("RightMouseButtonPressed", throwIfNotFound: true);
+        // Base
+        m_Base = asset.FindActionMap("Base", throwIfNotFound: true);
+        m_Base_MousePosition = m_Base.FindAction("MousePosition", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -456,6 +487,52 @@ public partial class @PlayerInputAction: IInputActionCollection2, IDisposable
         }
     }
     public FightActions @Fight => new FightActions(this);
+
+    // Base
+    private readonly InputActionMap m_Base;
+    private List<IBaseActions> m_BaseActionsCallbackInterfaces = new List<IBaseActions>();
+    private readonly InputAction m_Base_MousePosition;
+    public struct BaseActions
+    {
+        private @PlayerInputAction m_Wrapper;
+        public BaseActions(@PlayerInputAction wrapper) { m_Wrapper = wrapper; }
+        public InputAction @MousePosition => m_Wrapper.m_Base_MousePosition;
+        public InputActionMap Get() { return m_Wrapper.m_Base; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(BaseActions set) { return set.Get(); }
+        public void AddCallbacks(IBaseActions instance)
+        {
+            if (instance == null || m_Wrapper.m_BaseActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_BaseActionsCallbackInterfaces.Add(instance);
+            @MousePosition.started += instance.OnMousePosition;
+            @MousePosition.performed += instance.OnMousePosition;
+            @MousePosition.canceled += instance.OnMousePosition;
+        }
+
+        private void UnregisterCallbacks(IBaseActions instance)
+        {
+            @MousePosition.started -= instance.OnMousePosition;
+            @MousePosition.performed -= instance.OnMousePosition;
+            @MousePosition.canceled -= instance.OnMousePosition;
+        }
+
+        public void RemoveCallbacks(IBaseActions instance)
+        {
+            if (m_Wrapper.m_BaseActionsCallbackInterfaces.Remove(instance))
+                UnregisterCallbacks(instance);
+        }
+
+        public void SetCallbacks(IBaseActions instance)
+        {
+            foreach (var item in m_Wrapper.m_BaseActionsCallbackInterfaces)
+                UnregisterCallbacks(item);
+            m_Wrapper.m_BaseActionsCallbackInterfaces.Clear();
+            AddCallbacks(instance);
+        }
+    }
+    public BaseActions @Base => new BaseActions(this);
     private int m_MouseAndKeyboardSchemeIndex = -1;
     public InputControlScheme MouseAndKeyboardScheme
     {
@@ -488,5 +565,9 @@ public partial class @PlayerInputAction: IInputActionCollection2, IDisposable
     {
         void OnLeftMouseButtonPressed(InputAction.CallbackContext context);
         void OnRightMouseButtonPressed(InputAction.CallbackContext context);
+    }
+    public interface IBaseActions
+    {
+        void OnMousePosition(InputAction.CallbackContext context);
     }
 }

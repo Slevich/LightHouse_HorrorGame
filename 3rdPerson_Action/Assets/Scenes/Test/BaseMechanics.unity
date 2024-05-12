@@ -346,6 +346,39 @@ MonoBehaviour:
   m_LightCookieSize: {x: 1, y: 1}
   m_LightCookieOffset: {x: 0, y: 0}
   m_SoftShadowQuality: 0
+--- !u!114 &802616458 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1390764387777288259, guid: e13f1a942f0c3a646a6657308970de7b,
+    type: 3}
+  m_PrefabInstance: {fileID: 4923611879232729560}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40b781c2ef6ec1548896a7d4e36832f9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1 &810418824 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6005242154625582205, guid: e13f1a942f0c3a646a6657308970de7b,
+    type: 3}
+  m_PrefabInstance: {fileID: 4923611879232729560}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &810418826
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 810418824}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84d4d949550beb2479a358dc51044d0f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  persecutedTransform: {fileID: 802616458}
+  rotationAxisName: 1
+  rotationSpeed: 100
 --- !u!1 &827379697
 GameObject:
   m_ObjectHideFlags: 0
@@ -514,6 +547,46 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 920730336}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1069841834 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 151704253790147966, guid: e13f1a942f0c3a646a6657308970de7b,
+    type: 3}
+  m_PrefabInstance: {fileID: 4923611879232729560}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1069841836
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1069841834}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 72ece51f2901e7445ab60da3685d6b5f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ShowDebugText: 0
+  m_ShowCameraFrustum: 1
+  m_IgnoreTimeScale: 0
+  m_WorldUpOverride: {fileID: 0}
+  m_UpdateMethod: 2
+  m_BlendUpdateMethod: 1
+  m_DefaultBlend:
+    m_Style: 1
+    m_Time: 2
+    m_CustomCurve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+  m_CustomBlends: {fileID: 0}
+  m_CameraCutEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_CameraActivatedEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &1072513313
 GameObject:
   m_ObjectHideFlags: 0
@@ -586,15 +659,50 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1402514774009967107, guid: e13f1a942f0c3a646a6657308970de7b,
+        type: 3}
+      propertyPath: field of view
+      value: 70
+      objectReference: {fileID: 0}
+    - target: {fileID: 3910090298983009039, guid: e13f1a942f0c3a646a6657308970de7b,
+        type: 3}
+      propertyPath: rotationSpeed
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 5708769579659761176, guid: e13f1a942f0c3a646a6657308970de7b,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.00000008381903
+      objectReference: {fileID: 0}
+    - target: {fileID: 5708769579659761176, guid: e13f1a942f0c3a646a6657308970de7b,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5708769579659761176, guid: e13f1a942f0c3a646a6657308970de7b,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5708769579659761176, guid: e13f1a942f0c3a646a6657308970de7b,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5708769579659761176, guid: e13f1a942f0c3a646a6657308970de7b,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
     - target: {fileID: 5708769579659761176, guid: e13f1a942f0c3a646a6657308970de7b,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.03565947
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 5708769579659761176, guid: e13f1a942f0c3a646a6657308970de7b,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.007112421
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 5856620927441946016, guid: e13f1a942f0c3a646a6657308970de7b,
         type: 3}
@@ -663,6 +771,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9131407213136118725, guid: e13f1a942f0c3a646a6657308970de7b,
         type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9131407213136118725, guid: e13f1a942f0c3a646a6657308970de7b,
+        type: 3}
       propertyPath: movementSpeed
       value: 5
       objectReference: {fileID: 0}
@@ -671,10 +784,20 @@ PrefabInstance:
       propertyPath: rotationSpeed
       value: 5
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 4032008293994009925, guid: e13f1a942f0c3a646a6657308970de7b, type: 3}
+    - {fileID: 8939237115147637864, guid: e13f1a942f0c3a646a6657308970de7b, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 6005242154625582205, guid: e13f1a942f0c3a646a6657308970de7b,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 810418826}
+    - targetCorrespondingSourceObject: {fileID: 151704253790147966, guid: e13f1a942f0c3a646a6657308970de7b,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1069841836}
   m_SourcePrefab: {fileID: 100100000, guid: e13f1a942f0c3a646a6657308970de7b, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
