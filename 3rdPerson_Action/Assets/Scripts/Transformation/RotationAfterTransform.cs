@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(ListeningTransform))]
 public class RotationAfterTransform : MonoBehaviour
 {
     #region
@@ -14,13 +15,19 @@ public class RotationAfterTransform : MonoBehaviour
     [Range(0,100)]
     [SerializeField] private float rotationSpeed;
 
+    private ListeningTransform currentTransform;
     private AxisSelector axisSelector;
     #endregion
 
     #region
     private void Awake ()
     {
-        persecutedTransform.OnLocalRotationChanged += delegate { Rotate();};
+        if(TryGetComponent<ListeningTransform>(out ListeningTransform listeningTransform) && !currentTransform)
+        {
+            currentTransform = listeningTransform;
+        }
+
+        persecutedTransform.OnLocalQuaternionChanged += delegate { Rotate();};
     }
 
     private void Start ()
@@ -31,7 +38,7 @@ public class RotationAfterTransform : MonoBehaviour
     private void Rotate()
     {
         Quaternion targetGlobalRotation = persecutedTransform.GlobalQuaternion;
-        transform.rotation = ReturnTargetAxisRotation(targetGlobalRotation.eulerAngles);
+        currentTransform.GlobalQuaternion = ReturnTargetAxisRotation(targetGlobalRotation.eulerAngles);
     }
 
     private Quaternion ReturnTargetAxisRotation(Vector3 targetRotation)

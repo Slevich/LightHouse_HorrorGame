@@ -30,8 +30,6 @@ public class RotationByMouseMovement : MonoBehaviour
     {
         deltaLength = MouseDetector.MouseDeltaVectorLenght;
         mouseDelta = MouseDetector.MouseDeltaClamped;
-        Quaternion firstAxisTargetRotation = Quaternion.identity;
-        Quaternion secondAxisTargetRotation = Quaternion.identity;
         Vector3 firstRotationAxis = Vector3.zero;
         Vector3 secondRotationAxis = Vector3.zero;
         float firstAxisTargetAngle = 0f;
@@ -68,8 +66,8 @@ public class RotationByMouseMovement : MonoBehaviour
                 break;
         }
 
-        firstAxisTargetRotation = Quaternion.AngleAxis(firstAxisTargetAngle, firstRotationAxis);
-        secondAxisTargetRotation = Quaternion.AngleAxis(secondAxisTargetAngle, secondRotationAxis);
+        Quaternion firstAxisTargetRotation = Quaternion.AngleAxis(firstAxisTargetAngle, firstRotationAxis);
+        Quaternion secondAxisTargetRotation = Quaternion.AngleAxis(secondAxisTargetAngle, secondRotationAxis);
         Quaternion localRotation = firstAxisTargetRotation * secondAxisTargetRotation;
         return localRotation;
     }

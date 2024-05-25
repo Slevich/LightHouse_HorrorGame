@@ -130,6 +130,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player_TEST
       objectReference: {fileID: 0}
+    - target: {fileID: 6937755168558771677, guid: 1a816d9354158e0459ed82a664555f72,
+        type: 3}
+      propertyPath: readingMouseInputAxis
+      value: 
+      objectReference: {fileID: 6509490618285737754}
     - target: {fileID: 7160446844830829982, guid: 1a816d9354158e0459ed82a664555f72,
         type: 3}
       propertyPath: m_LocalPosition.x

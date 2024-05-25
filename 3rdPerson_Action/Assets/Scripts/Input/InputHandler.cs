@@ -12,7 +12,7 @@ public class InputHandler : MonoBehaviour
     private Vector2 mousePosition = Vector2.zero;
     private Vector2 baseMovementButtonsInputDirection = Vector2.zero;
     public Vector2 mousePositionVector => mousePosition;
-    public Vector3 BaseMovementButtonsInputDirection => baseMovementButtonsInputDirection;
+    public Vector2 BaseMovementButtonsInputDirection => baseMovementButtonsInputDirection;
     #endregion
 
     #region Methods
@@ -35,7 +35,7 @@ public class InputHandler : MonoBehaviour
     private void Update ()
     {
         MouseDetector.CalculateMouseValues(inputAction);
-        baseMovementButtonsInputDirection = KeyboardDetector.ReadWASDInputDirections(inputAction);
+        baseMovementButtonsInputDirection = KeyboardDetector.GetWASDInputDirections(inputAction);
     }
 
     public void AddListenersToMouseMovement(UnityAction action)

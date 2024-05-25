@@ -8,8 +8,8 @@ public class ListeningTransform : MonoBehaviour
     #region Fields
     [SerializeField] private Transform currentTransform;
 
-    private UnityAction onLocalRotationChanged = delegate{;};
-    private UnityAction onGlobalRotationChanged = delegate {; };
+    private UnityAction onLocalQuaternionChanged = delegate{;};
+    private UnityAction onGlobalQuaternionChanged = delegate {; };
     #endregion
 
     #region Properties
@@ -18,21 +18,23 @@ public class ListeningTransform : MonoBehaviour
     public Quaternion GlobalQuaternion
     {
         get { return currentTransform.rotation; }
-        set { currentTransform.rotation = value; onGlobalRotationChanged(); }
+        set { currentTransform.rotation = value; onGlobalQuaternionChanged(); }
     }
 
     public Quaternion LocalQuaternion
     {
         get { return currentTransform.localRotation; }
-        set { currentTransform.localRotation = value; onLocalRotationChanged(); }
+        set { currentTransform.localRotation = value; onLocalQuaternionChanged(); }
     }
+
+    public UnityAction OnLocalQuaternionChanged { get { return onLocalQuaternionChanged; } set { onLocalQuaternionChanged = value; } }
+    public UnityAction OnGlobalQuaternionChanged { get { return onGlobalQuaternionChanged; } set { onGlobalQuaternionChanged = value; } }
 
     public Vector3 GlobalPosition => currentTransform.position;
     public Vector3 LocalPosition => currentTransform.localPosition;
-    public UnityAction OnLocalRotationChanged { get { return onLocalRotationChanged; } set { onLocalRotationChanged = value; } }
     #endregion
 
-    #region Methods
+    #region Method
     private void Awake ()
     {
         if(!transform && TryGetComponent<Transform>(out Transform thisObjectTransform))
