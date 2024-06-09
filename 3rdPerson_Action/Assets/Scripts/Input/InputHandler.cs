@@ -30,12 +30,13 @@ public class InputHandler : MonoBehaviour
     {
         inputAction = new PlayerInputAction();
         Cursor.visible = false;
+        KeyboardDetector.SetInputActionReference(inputAction);
     }
 
     private void Update ()
     {
         MouseDetector.CalculateMouseValues(inputAction);
-        baseMovementButtonsInputDirection = KeyboardDetector.GetWASDInputDirections(inputAction);
+        baseMovementButtonsInputDirection = KeyboardDetector.GetWASDInputDirections();
     }
 
     public void AddListenersToMouseMovement(UnityAction action)

@@ -1,5 +1,7 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.PackageManager;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
@@ -11,6 +13,7 @@ public static class KeyboardDetector
     private static UnityAction inputDirectionIsNotZero = delegate {; };
 
     private static Vector2 movementInputDirection = Vector2.zero;
+    private static PlayerInputAction inputAction;
     #endregion
 
     #region Properties
@@ -40,10 +43,27 @@ public static class KeyboardDetector
     #endregion
 
     #region Methods
-    public static Vector2 GetWASDInputDirections(PlayerInputAction inputAction)
+    public static void SetInputActionReference(PlayerInputAction PlayerInputAction)
     {
+        inputAction = PlayerInputAction;
+    }
+
+    public static Vector2 GetWASDInputDirections()
+    {
+        if (inputAction == null) return Vector2.zero;
+
         WASDInputDirection = inputAction.Movement.InputDirections.ReadValue<Vector2>();
         return WASDInputDirection;
     }
+
+    public static void AddListenersToShiftPressedState(Action<InputAction.CallbackContext> ShiftStartedAction, Action<InputAction.CallbackContext> ShiftCanceledAction)
+    {
+        if (inputAction == null) return;
+
+        inputAction.Movement.Shift.started += ShiftStartedAction;
+        inputAction.Movement.Shift.canceled += ShiftCanceledAction;
+    }
+
+
     #endregion
 }

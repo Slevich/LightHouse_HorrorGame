@@ -53,6 +53,15 @@ public partial class @PlayerInputAction: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Shift"",
+                    ""type"": ""Value"",
+                    ""id"": ""3dd178c7-33f9-4f7a-8904-6696f299a47a"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [
@@ -130,6 +139,17 @@ public partial class @PlayerInputAction: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": ""MouseAndKeyboard"",
                     ""action"": ""ControlPressed"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""47cd3fa8-713c-4ac8-bb1c-ae8f127cb3b9"",
+                    ""path"": ""<Keyboard>/shift"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""MouseAndKeyboard"",
+                    ""action"": ""Shift"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -258,6 +278,7 @@ public partial class @PlayerInputAction: IInputActionCollection2, IDisposable
         m_Movement_InputDirections = m_Movement.FindAction("InputDirections", throwIfNotFound: true);
         m_Movement_SpacePressed = m_Movement.FindAction("SpacePressed", throwIfNotFound: true);
         m_Movement_ControlPressed = m_Movement.FindAction("ControlPressed", throwIfNotFound: true);
+        m_Movement_Shift = m_Movement.FindAction("Shift", throwIfNotFound: true);
         // Interaction
         m_Interaction = asset.FindActionMap("Interaction", throwIfNotFound: true);
         m_Interaction_Newaction = m_Interaction.FindAction("New action", throwIfNotFound: true);
@@ -332,6 +353,7 @@ public partial class @PlayerInputAction: IInputActionCollection2, IDisposable
     private readonly InputAction m_Movement_InputDirections;
     private readonly InputAction m_Movement_SpacePressed;
     private readonly InputAction m_Movement_ControlPressed;
+    private readonly InputAction m_Movement_Shift;
     public struct MovementActions
     {
         private @PlayerInputAction m_Wrapper;
@@ -339,6 +361,7 @@ public partial class @PlayerInputAction: IInputActionCollection2, IDisposable
         public InputAction @InputDirections => m_Wrapper.m_Movement_InputDirections;
         public InputAction @SpacePressed => m_Wrapper.m_Movement_SpacePressed;
         public InputAction @ControlPressed => m_Wrapper.m_Movement_ControlPressed;
+        public InputAction @Shift => m_Wrapper.m_Movement_Shift;
         public InputActionMap Get() { return m_Wrapper.m_Movement; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -357,6 +380,9 @@ public partial class @PlayerInputAction: IInputActionCollection2, IDisposable
             @ControlPressed.started += instance.OnControlPressed;
             @ControlPressed.performed += instance.OnControlPressed;
             @ControlPressed.canceled += instance.OnControlPressed;
+            @Shift.started += instance.OnShift;
+            @Shift.performed += instance.OnShift;
+            @Shift.canceled += instance.OnShift;
         }
 
         private void UnregisterCallbacks(IMovementActions instance)
@@ -370,6 +396,9 @@ public partial class @PlayerInputAction: IInputActionCollection2, IDisposable
             @ControlPressed.started -= instance.OnControlPressed;
             @ControlPressed.performed -= instance.OnControlPressed;
             @ControlPressed.canceled -= instance.OnControlPressed;
+            @Shift.started -= instance.OnShift;
+            @Shift.performed -= instance.OnShift;
+            @Shift.canceled -= instance.OnShift;
         }
 
         public void RemoveCallbacks(IMovementActions instance)
@@ -556,6 +585,7 @@ public partial class @PlayerInputAction: IInputActionCollection2, IDisposable
         void OnInputDirections(InputAction.CallbackContext context);
         void OnSpacePressed(InputAction.CallbackContext context);
         void OnControlPressed(InputAction.CallbackContext context);
+        void OnShift(InputAction.CallbackContext context);
     }
     public interface IInteractionActions
     {

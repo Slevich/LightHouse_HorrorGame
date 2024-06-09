@@ -6,7 +6,7 @@ public abstract class MovementBase : MonoBehaviour
 {
     #region Fields
     [Range(0,10)]
-    [SerializeField] protected float movementBaseSpeed = 1f;
+    [SerializeField] protected float baseMovementMaxSpeed = 1f;
     [Range(0, 100)]
     [SerializeField] protected float rotationSpeed = 1f;
 
